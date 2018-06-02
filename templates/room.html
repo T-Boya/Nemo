@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        {{ room.name }}<br>
+        {% for message in messages %}
+            {{ message.message }}<br>
+        {% endfor %}
+        <form id="PostForm" method="post" action="{% url 'room' slug=room.slug id=room.id %}">
+                {% csrf_token %}
+                <p>Message:</p>
+                <input type="text" name="message" value="" size="50" style="padding-left: 20px;"/>
+                <input type="submit" value="Send Message" style="border: solid 2px black; border-radius: 10px; margin-top: 5px;"/>
+                </form>
+    </body>
+</html>

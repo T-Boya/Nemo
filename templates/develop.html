@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        {% for room in rooms %}
+            <a href="{% url 'room' slug=room.slug id=room.id %}">{{ room.name }}</a>
+            {% endfor %}
+
+            <form id="AddRoom" method="post" action="{% url 'index' %}">
+                    {% csrf_token %}
+                    <p>Room:</p>
+                    <input type="text" name="room" value="" size="50" style="padding-left: 20px;"/>
+                    <input type="submit" value="Add Room" style="border: solid 2px black; border-radius: 10px; margin-top: 5px;"/>
+                    </form>
+                    <p>{{ message }}</p>
+    </body>
+</html>

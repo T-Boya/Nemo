@@ -1,33 +1,20 @@
 from django.db import models
 from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.template.defaultfilters import slugify
+from django.shortcuts import redirect
 
-class Set(models.Model):
-    title = models.CharField()
+class Room(models.Model):
+    name = models.CharField(max_length=30)
+    slug = models.SlugField(default='', blank=True)
 
-class T1(models.Model):
-    textA = models.CharField()
-    Set = models.ForeignKey(Set)
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
-class SetForm(forms.ModelForm):
-    title = forms.CharField(required=True)
-    textA_0 = forms.CharField(required=True)
-    textA_1 = forms.CharField(required=True)
-    textA_2 = forms.CharField(required=True)
-    textB_0 = forms.CharField(required=True)
-    textB_1 = forms.CharField(required=True)
-    textB_2 = forms.CharField(required=True)
+    def __str__(self):
+        return self.name
 
-    class Meta:
-        model = Profile
-
-    def save(self):
-        Set = self.instance
-        Set.title = self.cleaned_data[title]
-
-        Set.textA_set.all().delete()
-        For i in range(3):
-           textA = self.cleaned_data[“textA_{}”.format(i]
-           Set.objects.create(
-               title=title, interest=interest)
+class Message(models.Model):
+    message = models.CharField(max_length=1000)
+    poster = models.CharField(max_length=10)
+    room = models.ForeignKey(Room)
