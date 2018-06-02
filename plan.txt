@@ -1,0 +1,20 @@
+Models:
+    InformationDuo
+        data1
+        data2
+        Data Set Foreign Key
+        User
+        Public/Private
+
+    Data set
+        Name
+        Subject Foreign Key
+
+    Subject
+        Name
+
+Forms:
+    Subject Creation Forms
+    Data Set Forms
+    Information Forms
+

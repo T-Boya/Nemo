@@ -1,0 +1,76 @@
+{% load bootstrap4 %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block title %}
+        <title>Thrust</title>
+        {% endblock %}
+        {% block icon %}
+        <link rel="icon" src="/static/IMG/ICNS/icn1.png">
+        {% endblock %}
+        {% block css_main %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript jquery='full' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'CSS/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'CSS/main.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:700" rel="stylesheet">       
+        {% endblock %}
+        {% block stylesheet %}
+        {% endblock %}
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <style> 
+                #bg {
+                    position: relative;
+                    -webkit-animation-name: flight; /* Safari 4.0 - 8.0 */
+                    -webkit-animation-duration: 10s; /* Safari 4.0 - 8.0 */
+                    animation-name: flight;
+                    animation-duration: 120s;   
+                }
+                
+                /* Safari 4.0 - 8.0 */
+                @-webkit-keyframes flight {
+                    0%   {transform: rotate(0deg);}
+                    20%   {transform: rotate(15deg);}
+                    60%   {transform: rotate(-15deg);}
+                    80%   {transform: rotate(0deg);}
+                    100%  {transform: rotate(0deg);}
+                }
+                
+                /* Standard syntax */
+                @keyframes flight {
+                    0%   {transform: rotate(0deg);}
+                    20%   {transform: rotate(15deg);}
+                    60%   {transform: rotate(-15deg);}
+                    80%   {transform: rotate(0deg);}
+                    100%  {transform: rotate(0deg);}
+                }
+                </style>
+
+    </head>
+    <body>
+    {% block navbar %}
+        <!-- NAVBAR -->
+        <nav class="navbar fixed-top navbar-light">
+                <div class="container">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                          <a class="navbar-brand" href="#"><p>Home</p></a>
+                          <a class="navbar-brand" href="#"><p>About</p></a>
+                        </nav>
+                      </div>
+              </nav>
+
+
+    {% endblock %}
+
+    <div class="content">
+    {% block content %}
+    {% endblock %}
+    </div>
+    {% load staticfiles %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{% static 'JS/main.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+#main-title {
+    text-align: center;
+    height: 90vh;
+    z-index: 10;
+}
+#main-title h1{
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 10vh;
+    font-family: 'Libre Baskerville', serif;
+    line-height: 90vh;
+}
+#container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+#main-title, #bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#bg {
+    position: relative;-webkit-animation-name: flight; -webkit-animation-duration: 10s; animation-name: flight; animation-duration: 10s; animation-iteration-count: infinite; -webkit-animation-iteration-count: infinite;
+}
+#begin {
+    background-color: none;
+    border-bottom: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+/* ANIMATION */
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes flight {
+    0%   {transform: rotate(0deg);}
+    20%   {transform: rotate(30deg);}
+    60%   {transform: rotate(-30deg);}
+    60.1% {transform: rotate(-30deg) translateY(30px);}
+    60.2% {transform:rotate(-30deg) translateY(0px);}
+    60.3% {transform:rotate(-30deg) translateY(30px);}
+    60.4% {transform:rotate(-30deg) translateY(0px);}
+    80%   {transform: rotate(0deg);}
+    100%  {transform: rotate(0deg);}
+}
+
+/* Standard syntax */
+@keyframes flight {
+    0%   {transform: rotate(0deg);}
+    20%   {transform: rotate(30deg);}
+    60%   {transform: rotate(-30deg);}
+    60.1% {transform: rotate(-30deg) translateY(10px);}
+    60.2% {transform:rotate(-30deg) translateY(0px);}
+    60.3% {transform:rotate(-30deg) translateY(10px);}
+    60.4% {transform:rotate(-30deg) translateY(0px);}
+    80%   {transform: rotate(0deg);}
+    100%  {transform: rotate(0deg);}
+}
+/* ANIMATION */
