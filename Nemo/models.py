@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 class Room(models.Model):
     name = models.CharField(max_length=30)
     slug = models.SlugField(default='', blank=True)
+    admin = models.CharField(max_length=45)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
