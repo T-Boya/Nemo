@@ -29,7 +29,7 @@ def index(request):
                     return redirect('room', slug=room.slug, id=room.id)
 
                 except ObjectDoesNotExist:
-                    message = "Room could not be found. Start your search with \c to create it?"
+                    message = "Room could not be found. Start your search with /c to create it?"
                 return render(request, 'home.html', {'username':username, 'message' : message,})
                  
             else:
@@ -46,7 +46,7 @@ def index(request):
             return redirect('room', id = theroom.id, slug = theroom.slug)
 
         else:
-            message = 'Please start your search with /c or /s'
+            message = 'Please start your input with /c or /s'
             return render(request, 'home.html', {'username':username, 'message' : message,})
             
     else:
