@@ -1,8 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
-        Your username is {{username}}
-    </body>
-</html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <div style="margin-top: 30vh; text-align: center; color: rgb(75, 74, 74);">
+            <h1>Your username is {{ username }}</h1>
+            <div id="hideme">
+                <button onClick="window.location.reload()" style="border: none; border-radius: 2px; margin-top: 5px; padding: 5px;font-size: 15px; margin-right: 5px; background: transparent;">Another!</button>
+                <!-- <button onclick="window.location='{% url 'home' %}'" class="togglehideshow"style="border: none; border-radius: 2px; margin-top: 5px; padding: 5px;font-size: 15px; margin-left: 5px; background: transparent;">Continue</button>
+                 -->
+                <button class="togglehideshow" style="border: none; border-radius: 2px; margin-top: 5px; padding: 5px;font-size: 15px; margin-left: 5px; background: transparent;">Continue</button>   
+            </div>
+            
+            <div id="showme">
+                <input class="search" style="width: 30vw;">
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $(".togglehideshow").click(function(){
+                    $("#showme").show();
+                    $("#hideme").hide();
+                })
+            ;});
+        </script>
+{% endblock %}

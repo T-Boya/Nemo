@@ -2,22 +2,10 @@
 body{
     height: 100vh;
     width: 100vw;
-    background-image: url('/static/IMG/bgs/bg2.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    /* background: rgb(89, 120, 146); */
     /* overflow: hidden; */
 }
 /* PAGE STYLING */
-
-/* NAVBAR STYLING */
-.navbar {
-    height: 10vh;
-    margin-bottom: 0;
+#showme {
+    display: none;
 }
-.navbar p{
-    color: white;
-}
-.navbar p:hover{
-    color: #A3948A;
-}
-/* NAVBAR STYLING */
