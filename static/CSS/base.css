@@ -11,6 +11,9 @@ textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
     outline: none;
 }
 /* PAGE STYLING */
+.content {
+    padding-left: 10px;
+}
 #showme {
     display: none;
 }

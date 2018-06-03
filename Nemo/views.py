@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.sessions.models import Session
+from django.utils import timezone
 from django.contrib.auth.models import User
 from Nemo.models import Room, Message
 import random
@@ -69,6 +71,12 @@ def room(request, slug, id):
     all_messages = Message.objects.all().order_by('-id')
     messages = all_messages.filter(room=room)
     name = room.name.upper()
+    active_sessions = Session.objects.filter(expire_date__gte=timezone.now())
+    user_list = []
+    for session in active_sessions:
+        data = session.get_decoded()
+        user_list.append(data.get('username'))
+        print(user_list)
     if room.admin == request.session['ipaddress']:
         Admin = True
     else:
@@ -80,5 +88,6 @@ def room(request, slug, id):
         message.room = room
         message = message.save()
         return redirect('room', slug=room.slug, id=room.id)
+
     else:
-        return render(request, 'room.html', {'room' : room, 'messages' : messages, 'username':username, 'admin' : Admin, 'name' : name,})
+        return render(request, 'room.html', {'room' : room, 'messages' : messages, 'username':username, 'admin' : Admin, 'name' : name, 'users' : user_list})

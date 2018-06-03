@@ -1,19 +1,34 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
-            Your username is {{username}} <br>      
-        {{ name }}<br>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="left" style="float: left; width: 19vw; height: 100vh; border-right: 1px solid black; display: inline-block; margin: 0; padding: 0;">
+<div class="header" style="background-color: rgb(75, 74, 74); color: white; height: 13.2vh; margin-top: -3.3vh; margin-left: -2vw; width: 19vw; padding-top: 20px;">    
+<h3 style="text-align: center;">Active Users</h3>
+</div>
+{% for user in users %}
+<p style="margin: 10px; margin-bottom: 20px; margin-top: 20px;">{{ user }}</p>
+{% endfor %}
+</div>
+
+<div class="right" style="float: right; width: 80vw; display: inline-block; overflow: hidden; padding: 0; margin: 0;">
+<div class="header" style="background-color: rgb(75, 74, 74);; color: white; height: 10vh;">
+        <h5 style="margin-right: 10px; float: right; position: relative;">{{ username }}</h5>   
+        <div style="margin-left: 40px; padding-top: 10px; padding-bottom: 20px;">
+            <h2 style="display: inline; margin-right: 5px; text-decoration: underline;">{{ name }}</h2><h6 style="display: inline; margin-left: 5px;">Room Number {{ room.id }}</h6>
+        </div>
+</div>
         {% if admin %}
         <p>Admin</p>
         {% endif %}
         {% for message in messages %}
             {{ message.message }}<br>
         {% endfor %}
+    <footer class="fixed-bottom" style="width: 100%; padding: 10px; text-align: center; background-color: rgb(75, 74, 74);">
         <form id="PostForm" method="post" action="{% url 'room' slug=room.slug id=room.id %}">
                 {% csrf_token %}
-                <input type="text" name="message" value="" size="50" style="padding-left: 20px;"/>
+                <input type="text" name="message" value="" size="50" style="padding-left: 20px; height: 5vh; width: 90vw;"/>
                 </form>
-    </body>
-</html>
+    </footer>
+</div>
+
+{% endblock %}
