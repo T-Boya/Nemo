@@ -5,6 +5,11 @@ body{
     /* background: rgb(89, 120, 146); */
     /* overflow: hidden; */
 }
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
 /* PAGE STYLING */
 #showme {
     display: none;

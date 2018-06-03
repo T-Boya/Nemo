@@ -3,18 +3,31 @@
 {% block content %}
         <div style="margin-top: 30vh; text-align: center; color: rgb(75, 74, 74);">
             <h1>Your username is {{ username }}</h1>
-            <div id="hideme">
-                <button onClick="window.location.reload()" style="border: none; border-radius: 2px; margin-top: 5px; padding: 5px;font-size: 15px; margin-right: 5px; background: transparent;">Another!</button>
-                <!-- <button onclick="window.location='{% url 'home' %}'" class="togglehideshow"style="border: none; border-radius: 2px; margin-top: 5px; padding: 5px;font-size: 15px; margin-left: 5px; background: transparent;">Continue</button>
-                 -->
-                <button class="togglehideshow" style="border: none; border-radius: 2px; margin-top: 5px; padding: 5px;font-size: 15px; margin-left: 5px; background: transparent;">Continue</button>   
-            </div>
-            
-            <div id="showme">
-                <input class="search" style="width: 30vw;">
-            </div>
-        </div>
-
+            {% if message %}
+                <div>
+                        <form id="SearchForm" method="post" action="{% url 'index' %}">
+                            {% csrf_token %}
+                            <input type="text" class="search" name="search" placeholder="Room number" style="width: 30vw; height: 5vh; border: none; box-shadow: 0 4px 2px -2px gray; padding-left: 20px; padding-right: 20px;"><img src="{% static 'IMG/ICNS/help.png' %}" style="height: 20px; opacity: 50%;">
+                        </form>
+                        <p style="margin-top: 10px;">{{ message }}</p>
+                    </div>
+                </div>
+            {% else %}
+                <div id="hideme">
+                        <button onClick="window.location.reload()" style="border: none; border-radius: 2px; margin-top: 5px; padding: 5px;font-size: 15px; margin-right: 5px; background: transparent;">Another!</button>
+                        <!-- <button onclick="window.location='{% url 'home' %}'" class="togglehideshow"style="border: none; border-radius: 2px; margin-top: 5px; padding: 5px;font-size: 15px; margin-left: 5px; background: transparent;">Continue</button>
+                        -->
+                        <button class="togglehideshow" style="border: none; border-radius: 2px; margin-top: 5px; padding: 5px;font-size: 15px; margin-left: 5px; background: transparent;">Continue</button>   
+                    </div>
+                    
+                    <div id="showme">
+                        <form id="SearchForm" method="post" action="{% url 'index' %}">
+                            {% csrf_token %}
+                            <input type="text" class="search" name="search" placeholder="Room number" style="width: 30vw; height: 5vh; border: none; box-shadow: 0 4px 2px -2px gray; padding-left: 20px; padding-right: 20px;"><img src="{% static 'IMG/ICNS/help.png' %}" style="height: 20px; opacity: 50%;">
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
         <script>
             $(document).ready(function(){
                 $(".togglehideshow").click(function(){

@@ -7,6 +7,7 @@ class Room(models.Model):
     name = models.CharField(max_length=30)
     slug = models.SlugField(default='', blank=True)
     admin = models.CharField(max_length=45)
+    # id = models.AutoField(primary_key=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from Nemo.models import Room, Message
 import random
@@ -11,7 +12,43 @@ def index(request):
     request.session['username'] = 'u/' + request.session['suffix']
     username = request.session['username']
     request.session['ipaddress'] = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
-    return render(request, 'home.html', {'username':username,})
+    if request.method == 'POST':
+        fullquery = request.POST.get('search')
+        print('full: ' + fullquery)
+        intention = fullquery[0:3]
+        print('intention = ' + intention)
+        query = fullquery[3:]
+        print('query = ' + query)
+        if intention == '/s ':
+            if query.isdigit():
+                int(query)
+                try:
+                    room = Room.objects.get(id=query)
+                    return redirect('room', slug=room.slug, id=room.id)
+
+                except ObjectDoesNotExist:
+                    message = "Room could not be found. Start your search with \c to create it?"
+                return render(request, 'home.html', {'username':username, 'message' : message,})
+                 
+            else:
+                message = "Please enter a room number"
+                return render(request, 'home.html', {'username':username, 'message' : message,})
+            
+        elif intention == '/c ':
+            last = Room.objects.order_by("id").last()
+            new_id = last.id + 1
+            room = Room(name = query)
+            room.admin = request.session['ipaddress']
+            room = room.save()
+            theroom = get_object_or_404(Room, id=new_id)
+            return redirect('room', id = theroom.id, slug = theroom.slug)
+
+        else:
+            message = 'Please start your search with /c or /s'
+            return render(request, 'home.html', {'username':username, 'message' : message,})
+            
+    else:
+        return render(request, 'home.html', {'username':username,})
 
 def home(request):
     rooms = Room.objects.all()
