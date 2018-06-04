@@ -17,6 +17,3 @@ textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
 #showme {
     display: none;
 }
-#hovetoggle:hover + #hover{
-    display: block;
-}
