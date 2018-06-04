@@ -7,9 +7,9 @@
                 <div>
                         <form id="SearchForm" method="post" action="{% url 'index' %}">
                             {% csrf_token %}
-                            <input type="text" class="search" name="search" placeholder="Room number" style="width: 30vw; height: 5vh; border: none; box-shadow: 0 4px 2px -2px gray; padding-left: 20px; padding-right: 20px;"><button id="hovtoggle" style="border: none; background: transparent;"><img id="hovtoggle" src="{% static 'IMG/ICNS/help.png' %}" style="height: 20px; opacity: 50%;">
+                            <input type="text" class="search" name="search" placeholder="Room number" style="width: 30vw; height: 5vh; border: none; box-shadow: 0 4px 2px -2px gray; padding-left: 20px; padding-right: 20px;"><img src="{% static 'IMG/ICNS/help.png' %}" style="height: 20px; opacity: 50%;">
                         </form>
-                        <p style="margin-top: 10px;">{{ message }}</p>
+                            <p style="margin-top: 10px;">{{ message }}</p>
                     </div>
                 </div>
             {% else %}
